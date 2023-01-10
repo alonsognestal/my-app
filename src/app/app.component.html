@@ -4,26 +4,21 @@
 <!-- the component as the initial center of the map: -->
 <div class="container" >
   <google-map
-      height="800px"
+      height="1200px"
       width="100%"
       [zoom]="zoom"
       [center]="center"
       [options]="options"
 ><map-marker
-    *ngFor="let marker of markerPositions"
-    [position]="marker.position"
-    [label]="marker.label"
-    [title]="marker.title"
-    [options]="marker.options"
+#markerElem
+*ngFor="let marker of markers"
+[position]="marker.position"
+[label]="marker.label"
+[title]="marker.title"
+[options]="marker.options"
+(mapClick)="openInfo(markerElem, marker.info)"
 >
 </map-marker>
+<map-info-window>{{ infoContent }}</map-info-window>
 </google-map>
-<!-- Use custom zoom buttons -->
-<button (click)="zoomIn()">Zoom in</button>
-<button (click)="zoomOut()">Zoom out</button>
 </div>
-
-<!-- <agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>
-<input #fileImportInput (change)="fileChangeListener($event)" type="file" name="csv" accept="csv/*"> -->

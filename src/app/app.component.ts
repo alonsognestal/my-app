@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps';
-import Antenas from '../../antenasMoviles.json';
+import antenas from '../../antenasMoviles.json';
 
 @Component({
   selector: 'app-root',
@@ -18,29 +18,23 @@ export class AppComponent implements OnInit {
     zoomControl: true,
     scrollwheel: true,
     disableDoubleClickZoom: false,
-    mapTypeId: 'hybrid',
+    mapTypeId: 'roadmap',
     maxZoom: 25,
-    minZoom: 5,
+    minZoom: 1,
   };
   title = "Antenas móviles de España"
-  markerPositions: google.maps.LatLngLiteral[] = [];
+  markers = [];
+  
   infoContent = '';
-  antenas = Antenas;
+
   ngOnInit() {
     navigator.geolocation.getCurrentPosition((position) => {
       this.center = {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       };
+      this.addMarker(antenas)
     });
-    this.addMarker(this.antenas)
-    // Create markers.
-  // for (let i = 0; i < this.markerPositions.length; i++) {
-  //   const marker = new google.maps.Marker({
-  //     position: this.markerPositions[i].position,
-  //     this.map
-  //   });
-  // }
   }
   zoomIn() {
     if (this.zoom < this.options.maxZoom) this.zoom++;
@@ -54,12 +48,13 @@ export class AppComponent implements OnInit {
   logCenter() {
     console.log(JSON.stringify(this.map.getCenter()));
   }
+ 
   addMarker(antenas) {
-    var coordenadas = antenas.map(f => [f.Gis_Latitud, f.Gis_Longitud])
-    this.markerPositions.push(coordenadas);
-  }
-  openInfo(marker: MapMarker, content) {
-    this.infoContent = content;
-    this.info.open(marker);
-  }
-}
+    antenas.forEach((f) => { 
+      this.markers.push({
+        position: {lat: Number(f.Gis_Latitud), lng: Number(f.Gis_Longitud)},
+        title: f.Gis_Codigo,
+        optimized: true
+      })
+  });
+}}
