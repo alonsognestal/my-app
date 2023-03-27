@@ -20,6 +20,8 @@
     "@angular/platform-browser": "^15.0.0",
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
+    "@googlemaps/js-api-loader": "^1.15.1",
+    "@googlemaps/markerclusterer": "^2.0.15",
     "ngx-csv-parser": "^1.2.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
@@ -34,8 +36,8 @@
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.0.0",
+    "karma-jasmine": "^4.0.2",
+    "karma-jasmine-html-reporter": "^1.7.0",
     "typescript": "~4.8.2"
   }
 }

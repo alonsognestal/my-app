@@ -2,6 +2,8 @@
 
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
+<!-- Los eventos hay que indicarlos dentro de la etiqueta <google-map> para que se llamen 
+  en la implementación del .ts, por ejemplo (mapClick) -->
 <div class="container" >
   <google-map
       height="1200px"
@@ -9,16 +11,21 @@
       [zoom]="zoom"
       [center]="center"
       [options]="options"
-><map-marker
-#markerElem
-*ngFor="let marker of markers"
-[position]="marker.position"
-[label]="marker.label"
-[title]="marker.title"
-[options]="marker.options"
-(mapClick)="openInfo(markerElem, marker.info)"
+      (mapClick)="click($event)" 
 >
+
+<!-- <map-marker-clusterer [imagePath]="markerClustererImagePath"> -->
+  <map-marker
+    #markerElem
+    *ngFor="let marker of markers"
+    [position]="marker.position"
+    [label]="marker.label"
+    [title]="marker.title"
+    [options]="marker.options"
+    (mapClick)="openInfo(markerElem, marker.info)">
 </map-marker>
+<!-- </map-marker-clusterer> -->
+
 <map-info-window>{{ infoContent }}</map-info-window>
 </google-map>
 </div>

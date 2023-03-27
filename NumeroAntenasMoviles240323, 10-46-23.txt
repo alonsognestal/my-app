@@ -1,0 +1,8 @@
+Antenas 700: 6623
+Antenas 800: 23833
+Antenas 900: 52845
+Antenas 1800: 21500
+Antenas 1900: 17469
+Antenas 2100: 8935
+Antenas 2600: 5095
+Antenas 3600: 582
